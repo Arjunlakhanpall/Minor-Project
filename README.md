@@ -46,6 +46,121 @@ This project implements a multi-layered object detection system that combines:
 - **Edge Detection**: Canny edge detection for object boundaries
 - **Hough Transform**: Circular object detection (cups, bottles)
 
+## 🏗️ System Architecture & Design
+
+### **Architectural Overview**
+The Object Classification System follows a modular, layered architecture designed for scalability, maintainability, and real-time performance.
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    APPLICATION LAYER                        │
+├─────────────────────────────────────────────────────────────┤
+│  main.py │ script.py │ enhanced_detector.py │ detection_logger.py │
+├─────────────────────────────────────────────────────────────┤
+│                    DETECTION LAYER                          │
+├─────────────────────────────────────────────────────────────┤
+│  YOLO v8 Model  │  Custom CV Algorithms  │  Post-processing  │
+├─────────────────────────────────────────────────────────────┤
+│                    UTILITY LAYER                            │
+├─────────────────────────────────────────────────────────────┤
+│  camera_utils.py  │  detection_utils.py  │  config.py  │
+├─────────────────────────────────────────────────────────────┤
+│                    HARDWARE LAYER                           │
+├─────────────────────────────────────────────────────────────┤
+│  Webcam  │  Intel RealSense  │  OpenCV VideoCapture  │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### **Design Patterns & Principles**
+
+#### **1. Modular Design Pattern**
+- **Separation of Concerns**: Each module handles specific functionality
+- **Loose Coupling**: Modules interact through well-defined interfaces
+- **High Cohesion**: Related functionality grouped together
+
+#### **2. Strategy Pattern**
+- **Detection Strategies**: YOLO detection vs Custom CV detection
+- **Camera Strategies**: Webcam vs RealSense camera handling
+- **Configuration Strategies**: Different detection modes and parameters
+
+#### **3. Observer Pattern**
+- **Real-time Updates**: Detection results broadcast to display components
+- **Event-driven Architecture**: Camera events trigger detection pipeline
+
+#### **4. Factory Pattern**
+- **Camera Factory**: Automatic camera type detection and initialization
+- **Model Factory**: YOLO model loading and configuration
+
+### **Data Flow Architecture**
+
+```
+Camera Input → Frame Capture → Preprocessing → Detection Pipeline → Post-processing → Display
+     ↓              ↓              ↓              ↓                    ↓              ↓
+  Hardware      OpenCV         Image         YOLO + Custom        Confidence     Real-time
+   Layer        Capture        Resize         Detection            Filtering      Visualization
+```
+
+### **Component Interaction Diagram**
+
+```
+┌─────────────┐    ┌─────────────┐    ┌─────────────┐
+│   Camera    │───▶│   Frame     │───▶│ Preprocess  │
+│   Module    │    │  Capture    │    │   Module    │
+└─────────────┘    └─────────────┘    └─────────────┘
+                                              │
+                                              ▼
+┌─────────────┐    ┌─────────────┐    ┌─────────────┐
+│  Detection  │◀───│   YOLO v8    │◀───│  Detection  │
+│  Results    │    │   Model     │    │  Pipeline   │
+└─────────────┘    └─────────────┘    └─────────────┘
+       │                                      ▲
+       ▼                                      │
+┌─────────────┐    ┌─────────────┐    ┌─────────────┐
+│  Display    │◀───│ Post-process│◀───│  Custom CV  │
+│  Module     │    │   Module    │    │  Detection  │
+└─────────────┘    └─────────────┘    └─────────────┘
+```
+
+### **System Components & Responsibilities**
+
+#### **🎯 Core Detection Components**
+- **YOLO v8 Engine**: Primary object detection with 80 COCO classes
+- **Custom CV Engine**: Enhanced detection for specific objects
+- **Detection Pipeline**: Coordinated processing of multiple detection methods
+- **Post-processing**: Confidence filtering, NMS, result aggregation
+
+#### **📷 Camera Management Components**
+- **Camera Factory**: Automatic camera type detection and initialization
+- **Frame Capture**: Real-time frame acquisition and preprocessing
+- **Multi-camera Support**: Webcam and Intel RealSense integration
+- **Error Handling**: Robust camera failure detection and recovery
+
+#### **🔧 Utility Components**
+- **Configuration Manager**: Centralized settings and parameter management
+- **Detection Utilities**: Bounding box drawing, statistics calculation
+- **Logging System**: Comprehensive detection logging and export
+- **Performance Monitor**: Real-time performance metrics and optimization
+
+#### **🎨 User Interface Components**
+- **Real-time Display**: Live camera feed with detection overlays
+- **Interactive Controls**: Keyboard shortcuts and user commands
+- **Visual Feedback**: Bounding boxes, labels, confidence scores
+- **Status Display**: Detection statistics and system information
+
+### **Performance Optimization Design**
+
+#### **🚀 Real-time Processing**
+- **Frame Rate Optimization**: 30 FPS processing with minimal latency
+- **Memory Management**: Efficient frame buffering and garbage collection
+- **CPU Optimization**: Multi-threading for detection and display
+- **GPU Acceleration**: Optional CUDA support for faster inference
+
+#### **📊 Scalability Design**
+- **Modular Architecture**: Easy addition of new detection methods
+- **Plugin System**: Extensible detection algorithms
+- **Configuration Flexibility**: Runtime parameter adjustment
+- **Multi-threading**: Parallel processing for improved performance
+
 ## 📁 Project Structure & File Descriptions
 
 ```
