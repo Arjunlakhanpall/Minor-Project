@@ -1,0 +1,5 @@
+opencv-python>=4.8.0
+ultralytics>=8.0.0
+numpy>=1.24.0
+Pillow>=9.5.0
+# pyrealsense2>=2.54.0  # Optional - only needed for Intel RealSense cameras
