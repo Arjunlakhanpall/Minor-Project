@@ -22,6 +22,20 @@ This project implements a multi-layered object detection system that combines:
 - **No Image Saving**: Detection-only mode for privacy
 - **Error Handling**: Robust error handling for camera and model loading
 
+## 📸 System Screenshots
+
+### **Real-time Object Detection in Action**
+![Object Detection System](Screenshot%202025-10-07%20at%209.02.34%20AM.png)
+*Live camera feed with real-time object detection showing bounding boxes and confidence scores*
+
+### **Enhanced Detection Interface**
+![Enhanced Detection](Screenshot%202025-10-07%20at%209.02.38%20AM.png)
+*Enhanced detection system identifying multiple objects with custom computer vision algorithms*
+
+### **Detection Statistics and Logging**
+![Detection Statistics](Screenshot%202025-10-07%20at%209.13.10%20AM.png)
+*Comprehensive detection logging showing real-time statistics and object counts*
+
 ## 🛠️ Technology Stack & Libraries
 
 ### Core Machine Learning & AI
@@ -369,6 +383,23 @@ python -c "from ultralytics import YOLO; YOLO('yolov8n.pt')"
 - **Memory Usage**: ~500MB RAM
 - **CPU Usage**: 30-50% on modern processors
 - **Camera Support**: 30 FPS at 640x480 resolution
+
+## 🎬 System Demonstration
+
+The screenshots above showcase the Object Classification System in action:
+
+1. **Real-time Detection**: The system continuously processes camera input and identifies objects with high accuracy
+2. **Multi-object Recognition**: Simultaneous detection of multiple objects in the same frame
+3. **Confidence Scoring**: Each detection includes confidence scores for reliability assessment
+4. **Live Statistics**: Real-time performance metrics and detection counts
+5. **User Interface**: Clean, intuitive interface with keyboard controls
+
+### **Detection Capabilities Demonstrated**
+- ✅ **Person Detection**: Accurate human detection with bounding boxes
+- ✅ **Object Classification**: Multiple object types identified simultaneously  
+- ✅ **Real-time Processing**: Smooth 30 FPS performance
+- ✅ **Confidence Display**: Transparent confidence scoring for each detection
+- ✅ **Statistics Tracking**: Live count of detected objects and performance metrics
 
 ## 🐛 Troubleshooting
 
